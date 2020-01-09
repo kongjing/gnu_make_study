@@ -1,9 +1,10 @@
-VPATH = src include
+vpath %.c src
+vpath %.h include
 
 result: example.o add.o sub.o
 	gcc -o result $^ 
 
-example.o: example.c add.h sub.h
+example.o: example.c add.h sub.h 
 	gcc -I include -c $< -o $@
 
 add.o: add.c add.h
