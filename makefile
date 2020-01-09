@@ -1,18 +1,12 @@
 vpath %.c src
 vpath %.h include
+CPPFLAGS = -I include
 
-result: example.o add.o sub.o
-	gcc -o result $^ 
-
-example.o: example.c add.h sub.h 
-	gcc -I include -c $< -o $@
-
-add.o: add.c add.h
-	gcc -I include -c $< -o $@ 
-
-sub.o: sub.c sub.h
-	gcc -I include -c $< -o $@ 
+example: example.o add.o sub.o
+example.o: add.h sub.h 
+add.o: add.h
+sub.o: sub.h
 
 .PHONY: clean
 clean:
-	rm -rf result *.o
+	rm -rf example *.o
