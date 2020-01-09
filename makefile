@@ -1,13 +1,15 @@
+VPATH = src include
+
 result: example.o add.o sub.o
 	gcc -o result $^ 
 
-example.o: src/example.c include/add.h include/sub.h
+example.o: example.c add.h sub.h
+	gcc -I include -c $< -o $@
+
+add.o: add.c add.h
 	gcc -I include -c $< -o $@ 
 
-add.o: src/add.c include/add.h
-	gcc -I include -c $< -o $@ 
-
-sub.o: src/sub.c include/sub.h
+sub.o: sub.c sub.h
 	gcc -I include -c $< -o $@ 
 
 .PHONY: clean
