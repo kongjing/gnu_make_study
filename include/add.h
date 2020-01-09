@@ -1,2 +1,2 @@
-#define DEBUG 24
+#define DEBUG 22
 int add(int a, int b);
