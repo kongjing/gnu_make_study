@@ -12,6 +12,7 @@ example.o: add.h sub.h
 add.o: add.h
 sub.o: sub.h
 
+
 .PHONY: clean
 clean:
 	rm -rf example *.o libyes.a
