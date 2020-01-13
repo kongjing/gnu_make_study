@@ -1,2 +1,2 @@
-#define subbug 22
+#define subbug 55 
 int sub(int a, int b); 
