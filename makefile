@@ -2,12 +2,14 @@ vpath %.c src
 vpath %.h include
 CPPFLAGS = -I include
 
-example: example.o libyes.a
-	cc example.o libyes.a -o example
+example: example.o libadd.a
+	cc example.o -L . -ladd -o example
  
-libyes.a: add.o sub.o
-	ar rv libyes.a add.o sub.o
-
+# $(AR) $(ARFLAGS) $@ $?  is better than  $(AR) $(ARFLAGS) $@ $^
+# this method only replace older pre files
+libadd.a: add.o sub.o
+	$(AR) $(ARFLAGS) $@ $?
+	
 example.o: add.h sub.h 
 add.o: add.h
 sub.o: sub.h
@@ -15,5 +17,5 @@ sub.o: sub.h
 
 .PHONY: clean
 clean:
-	rm -rf example *.o libyes.a
+	rm -rf example *.o libadd.a
 
