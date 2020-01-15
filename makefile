@@ -2,10 +2,10 @@ vpath %.c src
 vpath %.h include
 CPPFLAGS = -I include
 
-example: example.o libyes.a 
-	cc example.o -L . -lyes -o example
+example: example.o -lyes 
+	gcc -o $@ -L . $^
 
-libyes.a: libyes.a(add.o) libyes.a(sub.o)
+-lyes: libyes.a(add.o) libyes.a(sub.o)
 
 example.o: add.h sub.h 
 add.o: add.h
